@@ -1,21 +1,24 @@
 #include "Value.h"
 
-Value::Value(double d) {
-	data = d;
+// Constructors
+
+Value::Value(double d) : Value::Value(d, std::pair<Value*, Value*>(), ' ') {}
+
+Value::Value(double d, std::pair<Value*, Value*> others) : Value::Value(d, others, ' ') {}
+
+Value::Value(double d, std::pair<Value*, Value*> others, char op) : data(d), prev(others), operation(op) {}
+
+
+// Operator overloading
+
+Value Value::operator*(Value& v) {
+	std::pair<Value*, Value*> p({ this, &v });
+	return Value(data * v.data, p, '*');
 }
 
-Value::Value(double d, std::set<Value> others) : Value::Value(d) {
-	prev = std::set<Value>(others);
-}
-
-Value Value::operator*(const Value& v) {
-	std::set<Value> s({ *this, v });
-	return Value(data * v.data, s);
-}
-
-Value Value::operator+(const Value& v) {
-	std::set<Value> s({ *this, v });
-	return Value(data + v.data, s);
+Value Value::operator+(Value& v) {
+	std::pair<Value*, Value*> p({ this, &v });
+	return Value(data + v.data, p, '+');
 }
 
 bool Value::operator<(const Value& v) const{
@@ -24,6 +27,6 @@ bool Value::operator<(const Value& v) const{
 
 std::ostream& operator<<(std::ostream& out, const Value& v)
 {
-	out << "Value(" << v.data << ")" << std::endl;
+	out << "Value(" << v.data << ")";
 	return out;
 }
