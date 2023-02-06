@@ -3,11 +3,13 @@
 
 int main()
 {
-	std::cout << "Hello CMake." << std::endl;
 	Value v(3.5);
 	Value w(2);
 	Value x = v + w;
 	Value y = v * w;
-	std::cout << (v + w) * w << std::endl;
-	return 0;
+	Value o = x + y;
+	std::cout << o << x+y << std::endl;
+
+	for (Value const& v : o.prev) { std::cout << v;}
+	std::cout << std::endl;
 }
