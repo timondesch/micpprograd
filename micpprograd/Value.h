@@ -7,11 +7,13 @@ public:
 	double data;
 	std::pair<Value*, Value*> prev;
 	char operation;
+	char label;
 
 	Value();
 	Value(double);
-	Value(double, std::pair<Value*, Value*>);
-	Value(double, std::pair<Value*, Value*>, char);
+	Value(double, char);
+	Value(double, char, std::pair<Value*, Value*>);
+	Value(double, char, char, std::pair<Value*, Value*>);
 
 	Value operator*(Value& v);
 	Value operator+(Value& v);
