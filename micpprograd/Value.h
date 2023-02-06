@@ -19,6 +19,8 @@ public:
 	Value operator*(Value& v);
 	Value operator+(Value& v);
 	bool operator<(const Value&) const;
-	
+
+	Value relu();
+
 	friend std::ostream& operator<<(std::ostream&, const Value&);
 };

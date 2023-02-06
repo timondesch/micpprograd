@@ -14,7 +14,7 @@ int main()
 	Value x = v + w; x.label = 'x';
 	Value y = v * w; y.label = 'y';
 	Value o = x + y; o.label = 'o';
-	std::cout << o.prev.first->data << std::endl;
+	Value p = o.relu();
 
-	printBT("", &o, false);
+	printBT("", &p, false);
 }

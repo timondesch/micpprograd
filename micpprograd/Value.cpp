@@ -27,6 +27,11 @@ bool Value::operator<(const Value& v) const{
 	return data < v.data ? true : false;
 }
 
+Value Value:: relu() {
+	std::pair<Value*, Value*> p({ this, nullptr });
+	return Value(this->data > 0 ? this->data : 0 , '#', '/', p);
+}
+
 std::ostream& operator<<(std::ostream& out, const Value& v)
 {
 	out << "Value(" << v.label << " | data= " << v.data << " | gradient =" << v.gradient << ")";
