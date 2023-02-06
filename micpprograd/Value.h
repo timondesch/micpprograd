@@ -8,6 +8,7 @@ public:
 	std::pair<Value*, Value*> prev;
 	char operation;
 	char label;
+	double gradient;
 
 	Value();
 	Value(double);

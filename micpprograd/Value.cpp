@@ -8,7 +8,7 @@ Value::Value(double d, char l) : Value::Value(d, l, ' ', std::pair<Value*, Value
 
 Value::Value(double d, char l, std::pair<Value*, Value*> others) : Value::Value(d, l, ' ', others) {}
 
-Value::Value(double d, char l, char op, std::pair<Value*, Value*> others) : data(d), label(l), prev(others), operation(op) {}
+Value::Value(double d, char l, char op, std::pair<Value*, Value*> others) : data(d), label(l), prev(others), operation(op), gradient(0) {}
 
 
 // Operator overloading
@@ -29,6 +29,6 @@ bool Value::operator<(const Value& v) const{
 
 std::ostream& operator<<(std::ostream& out, const Value& v)
 {
-	out << "Value(" << v.label << ": " << v.data << ")";
+	out << "Value(" << v.label << " | data= " << v.data << " | gradient =" << v.gradient << ")";
 	return out;
 }
