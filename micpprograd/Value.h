@@ -1,5 +1,6 @@
 #include <utility>
 #include <iostream>
+#include <functional>
 
 class Value
 {
@@ -8,7 +9,8 @@ public:
 	std::pair<Value*, Value*> prev;
 	char operation;
 	char label;
-	double gradient;
+	double* gradient;
+	std::function<void()> backward;
 
 	Value();
 	Value(double);
